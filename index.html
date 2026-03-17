@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DailyClipHub - Trending Videos & Stories</title>
+  <title>DailyClipHub - Trending Music & Videos</title>
+  <meta name="description" content="DailyClipHub - Curated music and trending videos for relaxation, focus, and enjoyment.">
+  <meta name="keywords" content="music, relaxing, chill, trending videos, online content, stress relief, focus music">
 
   <style>
     body {
@@ -59,26 +61,27 @@
     .nav a:hover {
       color: #007bff;
     }
-    /* ===== Theme Toggle ===== */
 
-    .theme-btn{
-      border:none;
-      background:#f1f1f1;
-      border-radius:20px;
-      cursor:pointer;
-      font-size:14px;
-      transition:.2s;
+    .theme-btn {
+      border: none;
+      background: #f1f1f1;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: .2s;
       width: 32px;
       height: 32px;
     }
 
-    .theme-btn:hover{
-      background:#e4e4e4;
+    .theme-btn:hover {
+      background: #e4e4e4;
     }
+
     .search {
       display: flex;
       gap: 10px;
     }
+
     .search input {
       padding: 6px 12px;
       border-radius: 20px;
@@ -87,7 +90,6 @@
     }
 
     /* ================= Content ================= */
-
     .container {
       max-width: 1200px;
       margin: 40px auto;
@@ -146,47 +148,51 @@
       color: #888;
       background: #fff;
     }
+
     /* ===== Dark Mode ===== */
     body.dark .theme-btn {
       background: #2a2a2a;
-      
     }
+
     body.dark .theme-btn:hover {
-      background:#121212;
+      background: #121212;
     }
-    body.dark{
-      background:#121212;
-      color:#e6e6e6;
+
+    body.dark {
+      background: #121212;
+      color: #e6e6e6;
     }
 
     body.dark header,
-    body.dark footer{
-      background:#1b1b1b;
-      
+    body.dark footer {
+      background: #1b1b1b;
     }
+
     body.dark header h1 {
       color: #fff;
     }
+
     body.dark header .tagline {
       color: #aaa;
-     }
+    }
+
     body.dark .nav a {
-      color:#e6e6e6;
+      color: #e6e6e6;
     }
 
-    body.dark .card{
-      background:#1f1f1f;
-      box-shadow:0 6px 14px rgba(0,0,0,0.4);
+    body.dark .card {
+      background: #1f1f1f;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
     }
 
-    body.dark .desc{
-      color:#aaa;
+    body.dark .desc {
+      color: #aaa;
     }
 
-    body.dark input{
-      background:#2a2a2a;
-      border-color:#444;
-      color:#eee;
+    body.dark input {
+      background: #2a2a2a;
+      border-color: #444;
+      color: #eee;
     }
   </style>
 </head>
@@ -199,13 +205,14 @@
         <div class="logo">
           <h1>DailyClipHub</h1>
         </div>
-        <div class="tagline">Trending Videos & Stories Updated Daily</div>
+        <div class="tagline">Trending Music & Videos Updated Daily</div>
       </div>
 
-      <!-- <div class="nav">
+      <div class="nav">
         <a href="#">Home</a>
-      </div> -->
-      
+        <a href="#about">About</a>
+        <a href="#">Categories</a>
+      </div>
 
       <div class="search">
         <button id="themeToggle" class="theme-btn">🌙</button>
@@ -213,164 +220,153 @@
       </div>
     </div>
   </header>
-  <!-- ===== Site Update Info (Trust Signal) ===== -->
-<div style="
-  max-width:1200px;
-  margin:20px auto 0;
-  padding:10px 20px;
-  font-size:13px;
-  color:#666;
-  text-align:center;
-">
-  Latest update: March 2026 · New curated videos added from online communities
-</div>
+
+  <div style="
+    max-width:1200px;
+    margin:20px auto 0;
+    padding:10px 20px;
+    font-size:13px;
+    color:#666;
+    text-align:center;
+  ">
+    Latest update: March 2026 · New curated music videos added from online communities
+  </div>
+
   <div class="container">
     <div class="grid" id="videoGrid"></div>
   </div>
+
   <!-- ===== About Section ===== -->
-<section style="
-  max-width:900px;
-  margin:60px auto;
-  padding:20px;
-  background:#fff;
-  border-radius:12px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.05);
-  font-size:14px;
-  line-height:1.6;
-">
-  <h2>About DailyClipHub</h2>
+  <section id="about" style="
+    max-width:900px;
+    margin:60px auto;
+    padding:20px;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    font-size:14px;
+    line-height:1.6;
+  ">
+    <h2>About DailyClipHub</h2>
 
-  <p>
-    DailyClipHub is a personal content curation project that collects and
-    organizes trending videos discovered across online communities and social
-    platforms.
-  </p>
+    <p>
+      DailyClipHub is a personal content curation project that collects and organizes trending music videos
+      discovered across online communities and social platforms.
+    </p>
 
-  <p>
-    The goal of this site is to help viewers easily discover popular and
-    interesting videos that are being actively shared and discussed online.
-    Users access videos voluntarily after discovering them through shared
-    content pages.
-  </p>
+    <p>
+      Users access videos voluntarily after discovering them through these curated pages. All videos are
+      publicly available content collected for personal curation and enjoyment.
+    </p>
 
-  <p>
-    Content is updated regularly to reflect trending topics and viewer
-    interests.
-  </p>
-</section>
+    <p>
+      Content is updated regularly to reflect trending music and viewer interests.
+    </p>
+  </section>
+
   <footer>
-    © 2026 DailyClipHub · Discover the internet’s most talked-about videos.
+    © 2026 DailyClipHub · Discover trending music & videos · All content curated from public sources
   </footer>
 
   <script>
+    /* ================= 视频列表 ================= */
+    const videos = [
+      "https://streamruby.com/ottv8haywzg5.html",
+      "https://streamruby.com/syab8psfai26.html",
+      "https://streamruby.com/b9zkui7wu4jv.html",
+      "https://streamruby.com/53uipktm7lws.html",
+      "https://streamruby.com/5r268ug5yy3a.html",
+      "https://streamruby.com/aqw3dszu9kfz.html",
+      "https://streamruby.com/do7ktrnn5k5q.html",
+      "https://streamruby.com/cgseav9nyytv.html",
+      "https://streamruby.com/89jm99sxgxa7.html",
+      "https://streamruby.com/wukg86dt9m2f.html",
+      "https://streamruby.com/eafwuukucrvq.html",
+      "https://streamruby.com/newmusic12345.html"
+    ];
 
-  /* ================= 视频列表 ================= */
+    const titles = [
+      "Relaxing Chill Music",
+      "Soothing Tunes for Stress Relief",
+      "Feel-Good Vibes",
+      "Calm & Peaceful Instrumentals",
+      "Upbeat Music to Lift Your Mood",
+      "Melodic Tracks for Focus",
+      "Gentle Soundscapes",
+      "Happy & Relaxing Beats",
+      "Music for Mindfulness",
+      "Refreshing Tunes to Energize",
+      "Chill Music for Any Mood"
+    ];
 
-  const videos = [
-    "https://streamruby.com/ottv8haywzg5.html",
-    "https://streamruby.com/syab8psfai26.html",
-    "https://streamruby.com/b9zkui7wu4jv.html",
-    "https://streamruby.com/53uipktm7lws.html",
-    "https://streamruby.com/5r268ug5yy3a.html",
-    "https://streamruby.com/aqw3dszu9kfz.html",
-    "https://streamruby.com/do7ktrnn5k5q.html",
-    "https://streamruby.com/cgseav9nyytv.html",
-    "https://streamruby.com/89jm99sxgxa7.html",
-    "https://streamruby.com/wukg86dt9m2f.html",
-    "https://streamruby.com/eafwuukucrvq.html"
-  ];
+    const descriptions = [
+      "Enjoy these relaxing music clips to unwind and refresh.",
+      "Carefully selected soothing tracks for stress relief.",
+      "Feel-good music to brighten your day and mood.",
+      "Peaceful instrumentals for relaxation and focus.",
+      "Upbeat melodies to energize and motivate you.",
+      "Calming soundscapes perfect for study or work.",
+      "Gentle tunes for a serene and mindful experience.",
+      "Happy beats to lift your spirits and relax.",
+      "Music to help you meditate, focus, and de-stress.",
+      "Refreshing melodies to refresh your mind and soul.",
+      "Relaxing tracks to unwind after a busy day."
+    ];
 
-  const titles = [
-    "Relaxing Chill Music",
-    "Soothing Tunes for Stress Relief",
-    "Feel-Good Vibes",
-    "Calm & Peaceful Instrumentals",
-    "Upbeat Music to Lift Your Mood",
-    "Melodic Tracks for Focus",
-    "Gentle Soundscapes",
-    "Happy & Relaxing Beats",
-    "Music for Mindfulness",
-    "Refreshing Tunes to Energize"
-  ];
+    /* ================= 生成卡片 ================= */
+    const grid = document.getElementById("videoGrid");
+    let usedRandoms = [];
 
-  const descriptions = [
-    "Enjoy these relaxing music clips to unwind and refresh.",
-    "Carefully selected soothing tracks for stress relief.",
-    "Feel-good music to brighten your day and mood.",
-    "Peaceful instrumentals for relaxation and focus.",
-    "Upbeat melodies to energize and motivate you.",
-    "Calming soundscapes perfect for study or work.",
-    "Gentle tunes for a serene and mindful experience.",
-    "Happy beats to lift your spirits and relax.",
-    "Music to help you meditate, focus, and de-stress.",
-    "Refreshing melodies to refresh your mind and soul."
-  ];
+    function getUniqueRandom() {
+      let num;
+      do {
+        num = Math.floor(Math.random() * 1000);
+      } while (usedRandoms.includes(num));
+      usedRandoms.push(num);
+      return num;
+    }
 
-  /* ================= 生成卡片 ================= */
+    videos.forEach((url, index) => {
+      const card = document.createElement("a");
+      card.href = url;
+      card.target = "_blank";
+      card.className = "card";
 
-  const grid = document.getElementById("videoGrid");
+      const thumb = document.createElement("div");
+      thumb.className = "thumb";
+      thumb.style.backgroundImage = `url('https://picsum.photos/600/400?random=${getUniqueRandom()}')`;
 
-  /* 生成不重复随机图片编号 */
-  let usedRandoms = [];
+      const content = document.createElement("div");
+      content.className = "content";
 
-  function getUniqueRandom() {
-    let num;
-    do {
-      num = Math.floor(Math.random() * 1000);
-    } while (usedRandoms.includes(num));
-    usedRandoms.push(num);
-    return num;
-  }
+      const title = document.createElement("div");
+      title.className = "title";
+      title.textContent = titles[index % titles.length];
 
-  videos.forEach((url, index) => {
-    const card = document.createElement("a");
-    card.href = url;
-    card.target = "_blank";
-    card.className = "card";
+      const desc = document.createElement("div");
+      desc.className = "desc";
+      desc.textContent = descriptions[index % descriptions.length];
 
-    const thumb = document.createElement("div");
-    thumb.className = "thumb";
-    thumb.style.backgroundImage = `url('https://picsum.photos/600/400?random=${getUniqueRandom()}')`;
+      content.appendChild(title);
+      content.appendChild(desc);
+      card.appendChild(thumb);
+      card.appendChild(content);
+      grid.appendChild(card);
+    });
 
-    const content = document.createElement("div");
-    content.className = "content";
-
-    const title = document.createElement("div");
-    title.className = "title";
-    title.textContent = titles[index % titles.length]; // 防止数量不一致
-
-    const desc = document.createElement("div");
-    desc.className = "desc";
-    desc.textContent = descriptions[index % descriptions.length];
-
-    content.appendChild(title);
-    content.appendChild(desc);
-    card.appendChild(thumb);
-    card.appendChild(content);
-    grid.appendChild(card);
-  });
-
-  /* ===== Theme Switch ===== */
-
-  const btn = document.getElementById("themeToggle");
-
-  /* 读取历史模式 */
-  if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-    btn.textContent = "☀️";
-  }
-
-  btn.onclick = () => {
-    document.body.classList.toggle("dark");
-
-    const isDark = document.body.classList.contains("dark");
-
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-
-    btn.textContent = isDark ? "☀️" : "🌙";
-  };
-
-</script>
+    /* ===== Theme Switch ===== */
+    const btn = document.getElementById("themeToggle");
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+      btn.textContent = "☀️";
+    }
+    btn.onclick = () => {
+      document.body.classList.toggle("dark");
+      const isDark = document.body.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      btn.textContent = isDark ? "☀️" : "🌙";
+    };
+  </script>
 
 </body>
 

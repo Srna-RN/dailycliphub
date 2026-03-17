@@ -204,10 +204,6 @@
 
       <div class="nav">
         <a href="#">Home</a>
-        <a href="#">Trending</a>
-        <a href="#">Popular</a>
-        <a href="#">Categories</a>
-        <a href="#">About</a>
       </div>
       
 
@@ -217,11 +213,51 @@
       </div>
     </div>
   </header>
-
+  <!-- ===== Site Update Info (Trust Signal) ===== -->
+<div style="
+  max-width:1200px;
+  margin:20px auto 0;
+  padding:10px 20px;
+  font-size:13px;
+  color:#666;
+  text-align:center;
+">
+  Latest update: March 2026 · New curated videos added from online communities
+</div>
   <div class="container">
     <div class="grid" id="videoGrid"></div>
   </div>
+  <!-- ===== About Section ===== -->
+<section style="
+  max-width:900px;
+  margin:60px auto;
+  padding:20px;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.05);
+  font-size:14px;
+  line-height:1.6;
+">
+  <h2>About DailyClipHub</h2>
 
+  <p>
+    DailyClipHub is a personal content curation project that collects and
+    organizes trending videos discovered across online communities and social
+    platforms.
+  </p>
+
+  <p>
+    The goal of this site is to help viewers easily discover popular and
+    interesting videos that are being actively shared and discussed online.
+    Users access videos voluntarily after discovering them through shared
+    content pages.
+  </p>
+
+  <p>
+    Content is updated regularly to reflect trending topics and viewer
+    interests.
+  </p>
+</section>
   <footer>
     © 2026 DailyClipHub · Discover the internet’s most talked-about videos.
   </footer>
@@ -231,19 +267,17 @@
     /* ================= 视频列表 ================= */
 
     const videos = [
-      "https://luluvdo.com/orrewxl7xcnx",
-      "https://luluvdo.com/anekevn950k5",
-      "https://luluvdo.com/po0if3r6domu",
-      "https://luluvdo.com/une9h1hincq7",
-      "https://luluvdo.com/2ddwwuw7nu23",
-      "https://luluvdo.com/dpbhfs4gqx86",
-      "https://luluvdo.com/edrwnm1d3xwi",
-      "https://luluvdo.com/gh1vxef7qe2l",
-      "https://luluvdo.com/lg4se9m0dc7c",
-      "https://luluvdo.com/8igazxvjbk18",
-      "https://luluvdo.com/jnso5hdyhhcu",
-      "https://luluvdo.com/7bnuw19lvf50",
-      "https://luluvdo.com/it6qy7remimf"
+      "https://streamruby.com/ottv8haywzg5.html",
+      "https://streamruby.com/syab8psfai26.html",
+      "https://streamruby.com/b9zkui7wu4jv.html",
+      "https://streamruby.com/53uipktm7lws.html",
+      "https://streamruby.com/5r268ug5yy3a.html",
+      "https://streamruby.com/aqw3dszu9kfz.html",
+      "https://streamruby.com/do7ktrnn5k5q.html",
+      "https://streamruby.com/cgseav9nyytv.html",
+      "https://streamruby.com/89jm99sxgxa7.html",
+      "https://streamruby.com/wukg86dt9m2f.html",
+      "https://streamruby.com/eafwuukucrvq.html"
     ];
 
     const titles = [
@@ -312,8 +346,10 @@
       title.textContent = titles[index];
 
       const desc = document.createElement("div");
-      desc.className = "desc";
-      desc.textContent = descriptions[index];
+desc.className = "desc";
+desc.textContent =
+  descriptions[index] +
+  " Shared via social communities and content discovery platforms.";
 
       content.appendChild(title);
       content.appendChild(desc);

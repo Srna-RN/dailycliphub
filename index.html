@@ -96,6 +96,12 @@
       margin: 40px auto;
       padding: 0 20px;
     }
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 40px 0 20px;
+      color: #333;
+    }
 
     .grid {
       display: grid;
@@ -114,6 +120,20 @@
     }
 
     .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
+    }
+    .card-link { /* 子页面跳转卡片样式（和原有一致） */
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+      transition: all .25s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .card-link:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
     }
@@ -225,8 +245,14 @@
       background: #1f1f1f;
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
     }
-
+    body.dark .card-link {
+      background: #1f1f1f;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+    }
     body.dark .desc {
+      color: #aaa;
+    }
+    body.dark .section-title {
       color: #aaa;
     }
 
@@ -271,7 +297,14 @@
 
 
   <div class="container">
+    <h2 class="section-title">Trending Music Clips</h2>
     <div class="grid" id="videoGrid"></div>
+  </div>
+
+  <!-- 第二组卡片：跳转到子页面（查看页） -->
+  <div class="container">
+    <h2 class="section-title">View in Player</h2>
+    <div class="grid" id="playlistGrid"></div>
   </div>
 
   <!-- ===== About Section ===== -->
@@ -387,46 +420,112 @@
       "Relaxing tracks to unwind after a busy day."
     ];
 
+    // 第二组：跳转子页面的播放列表
+      const playlists = [
+        "https://dailycliphub.4meplayer.com/#dvdli",
+        "https://dailycliphub.4meplayer.com/#a1abo",
+        "https://dailycliphub.4meplayer.com/#zjzc5",
+        "https://dailycliphub.4meplayer.com/#3z3xk"
+      ];
+      const playlistTitles = [
+        "Morning Relaxation Playlist", "Study Focus Playlist",
+        "Evening Unwind Playlist", "Workout Energy Playlist"
+      ];
+      const playlistDescriptions = [
+        "Start your day with calming music to set a positive tone.",
+        "Focus-enhancing tracks for productive study sessions.",
+        "Wind down after a long day with soothing melodies.",
+        "Energetic beats to power through your workout."
+      ];
+
     /* ================= 生成卡片 ================= */
-    const grid = document.getElementById("videoGrid");
-    let usedRandoms = [];
+    // 生成通用卡片函数
+      function createCards(gridId, items, itemTitles, itemDescriptions, isSubpage = false) {
+        const grid = document.getElementById(gridId);
+        let usedRandoms = [];
+        function getUniqueRandom() {
+          let num;
+          do { num = Math.floor(Math.random() * 1000); } while (usedRandoms.includes(num));
+          usedRandoms.push(num);
+          return num;
+        }
 
-    function getUniqueRandom() {
-      let num;
-      do {
-        num = Math.floor(Math.random() * 1000);
-      } while (usedRandoms.includes(num));
-      usedRandoms.push(num);
-      return num;
-    }
+        items.forEach((url, index) => {
+          const card = document.createElement("a");
+          // 第二组卡片：跳转到子页面（带视频链接参数）
+          if (isSubpage) {
+            card.href = `./view.html?url=${encodeURIComponent(url)}&title=${encodeURIComponent(itemTitles[index])}`;
+            card.className = "card-link";
+          } else {
+            // 第一组卡片：新开窗口
+            card.href = url;
+            card.target = "_blank";
+            card.className = "card";
+          }
 
-    videos.forEach((url, index) => {
-      const card = document.createElement("a");
-      card.href = url;
-      card.target = "_blank";
-      card.className = "card";
+          const thumb = document.createElement("div");
+          thumb.className = "thumb";
+          thumb.style.backgroundImage = `url('https://picsum.photos/600/400?random=${getUniqueRandom()}')`;
 
-      const thumb = document.createElement("div");
-      thumb.className = "thumb";
-      thumb.style.backgroundImage = `url('https://picsum.photos/600/400?random=${getUniqueRandom()}')`;
+          const content = document.createElement("div");
+          content.className = "content";
+          const title = document.createElement("div");
+          title.className = "title";
+          title.textContent = itemTitles[index % itemTitles.length];
+          const desc = document.createElement("div");
+          desc.className = "desc";
+          desc.textContent = itemDescriptions[index % itemDescriptions.length];
 
-      const content = document.createElement("div");
-      content.className = "content";
+          content.appendChild(title);
+          content.appendChild(desc);
+          card.appendChild(thumb);
+          card.appendChild(content);
+          grid.appendChild(card);
+        });
+      }
 
-      const title = document.createElement("div");
-      title.className = "title";
-      title.textContent = titles[index % titles.length];
+      // 生成卡片
+      createCards("videoGrid", videos, titles, descriptions);
+      createCards("playlistGrid", playlists, playlistTitles, playlistDescriptions, true);
+    // const grid = document.getElementById("videoGrid");
+    // let usedRandoms = [];
 
-      const desc = document.createElement("div");
-      desc.className = "desc";
-      desc.textContent = descriptions[index % descriptions.length];
+    // function getUniqueRandom() {
+    //   let num;
+    //   do {
+    //     num = Math.floor(Math.random() * 1000);
+    //   } while (usedRandoms.includes(num));
+    //   usedRandoms.push(num);
+    //   return num;
+    // }
 
-      content.appendChild(title);
-      content.appendChild(desc);
-      card.appendChild(thumb);
-      card.appendChild(content);
-      grid.appendChild(card);
-    });
+    // videos.forEach((url, index) => {
+    //   const card = document.createElement("a");
+    //   card.href = url;
+    //   card.target = "_blank";
+    //   card.className = "card";
+
+    //   const thumb = document.createElement("div");
+    //   thumb.className = "thumb";
+    //   thumb.style.backgroundImage = `url('https://picsum.photos/600/400?random=${getUniqueRandom()}')`;
+
+    //   const content = document.createElement("div");
+    //   content.className = "content";
+
+    //   const title = document.createElement("div");
+    //   title.className = "title";
+    //   title.textContent = titles[index % titles.length];
+
+    //   const desc = document.createElement("div");
+    //   desc.className = "desc";
+    //   desc.textContent = descriptions[index % descriptions.length];
+
+    //   content.appendChild(title);
+    //   content.appendChild(desc);
+    //   card.appendChild(thumb);
+    //   card.appendChild(content);
+    //   grid.appendChild(card);
+    // });
 
     /* ===== Theme Switch ===== */
     const btn = document.getElementById("themeToggle");

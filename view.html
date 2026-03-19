@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">DailyClipHub - Video Player</title>
+    <meta name="description"
+        content="DailyClipHub - Curated music and trending videos for relaxation, focus, and enjoyment.">
+    <meta name="keywords" content="music, relaxing, chill, trending videos, online content, stress relief, focus music">
+    <style>
+        /* 完全复用主页的样式（保证头部/底部风格一致） */
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #fff;
+            padding: 18px 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav a:hover {
+            color: #007bff;
+        }
+
+        .theme-btn {
+            border: none;
+            background: #f1f1f1;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: .2s;
+            width: 32px;
+            height: 32px;
+        }
+
+        .theme-btn:hover {
+            background: #e4e4e4;
+        }
+
+        .search {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search input {
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            font-size: 13px;
+        }
+
+        /* 子页面核心：iframe容器 */
+        .iframe-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .iframe-player {
+            width: 100%;
+            height: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+            border: none;
+            background: #fff;
+        }
+
+        body.dark .iframe-player {
+            background: #1f1f1f;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+            background: #fff;
+        }
+
+        .footer-links {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: #007bff;
+        }
+
+        /* 暗黑模式适配 */
+        body.dark .theme-btn {
+            background: #2a2a2a;
+        }
+
+        body.dark .theme-btn:hover {
+            background: #121212;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e6e6e6;
+        }
+
+        body.dark header,
+        body.dark footer {
+            background: #1b1b1b;
+        }
+
+        body.dark header h1 {
+            color: #fff;
+        }
+
+        body.dark header .tagline {
+            color: #aaa;
+        }
+
+        body.dark .nav a {
+            color: #e6e6e6;
+        }
+
+        body.dark .footer-links a {
+            color: #aaa;
+        }
+
+        body.dark .footer-links a:hover {
+            color: #007bff;
+        }
+
+        body.dark input {
+            background: #2a2a2a;
+            border-color: #444;
+            color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 复用主页的头部 -->
+    <header>
+        <div class="header-inner">
+            <div>
+                <div class="logo">
+                    <h1>DailyClipHub</h1>
+                </div>
+                <div class="tagline">Trending Music & Videos Updated Daily</div>
+            </div>
+            <div class="nav">
+                <a href="./index.html">Home</a>
+                <a href="./index.html#about">About</a>
+                <a href="./index.html#contact">Contact</a>
+                <a href="./index.html#privacy">Privacy Policy</a>
+            </div>
+            <div class="search">
+                <button id="themeToggle" class="theme-btn">🌙</button>
+                <input type="text" placeholder="Search videos...">
+            </div>
+        </div>
+    </header>
+
+    <!-- 子页面核心：iframe播放区域 -->
+    <div class="iframe-container">
+        <iframe id="videoIframe" class="iframe-player" src="" frameborder="0"></iframe>
+    </div>
+
+    <!-- 复用主页的底部 -->
+    <footer>
+        <div class="footer-links">
+            <a href="./index.html">Home</a>
+            <a href="./index.html#about">About</a>
+            <a href="./index.html#contact">Contact</a>
+            <a href="./index.html#privacy">Privacy Policy</a>
+        </div>
+        <p>© 2026 DailyClipHub · All Rights Reserved · Content curated from public sources</p>
+        <p>Made with ❤️ for music lovers worldwide</p>
+    </footer>
+
+    <script>
+        // 从URL参数获取视频链接和标题
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                url: params.get('url'),
+                title: params.get('title')
+            };
+        }
+
+        // 初始化iframe和页面标题
+        const params = getUrlParams();
+        if (params.url) {
+            document.getElementById("videoIframe").src = params.url;
+            if (params.title) {
+                document.getElementById("pageTitle").textContent = `DailyClipHub - ${decodeURIComponent(params.title)}`;
+            }
+        } else {
+            // 无参数时跳回主页
+            window.location.href = "./index.html";
+        }
+
+        // 暗黑模式（和主页同步）
+        const btn = document.getElementById("themeToggle");
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark");
+            btn.textContent = "☀️";
+        }
+        btn.onclick = () => {
+            document.body.classList.toggle("dark");
+            const isDark = document.body.classList.contains("dark");
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+            btn.textContent = isDark ? "☀️" : "🌙";
+        };
+    </script>
+</body>
+
+</html>

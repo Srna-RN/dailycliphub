@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DailyClipHub - Trending Music & Videos</title>
-  <meta name="description" content="DailyClipHub - Curated music and trending videos for relaxation, focus, and enjoyment.">
+  <meta name="description"
+    content="DailyClipHub - Curated music and trending videos for relaxation, focus, and enjoyment.">
   <meta name="keywords" content="music, relaxing, chill, trending videos, online content, stress relief, focus music">
 
   <style>
@@ -140,6 +141,23 @@
       line-height: 1.5;
     }
 
+    /* 联盟审核必备：Affiliate Disclosure */
+    .disclosure {
+      max-width: 1200px;
+      margin: 20px auto 0;
+      padding: 12px 20px;
+      font-size: 12px;
+      color: #777;
+      background: #f9f9f9;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    body.dark .disclosure {
+      background: #242424;
+      color: #aaa;
+    }
+
     footer {
       margin-top: 60px;
       padding: 30px;
@@ -147,6 +165,29 @@
       font-size: 13px;
       color: #888;
       background: #fff;
+    }
+
+    .footer-links {
+      margin-bottom: 15px;
+    }
+
+    .footer-links a {
+      margin: 0 10px;
+      color: #666;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .footer-links a:hover {
+      color: #007bff;
+    }
+
+    body.dark .footer-links a {
+      color: #aaa;
+    }
+
+    body.dark .footer-links a:hover {
+      color: #007bff;
     }
 
     /* ===== Dark Mode ===== */
@@ -208,11 +249,13 @@
         <div class="tagline">Trending Music & Videos Updated Daily</div>
       </div>
 
-      <!-- <div class="nav">
+      <!-- 恢复导航栏：联盟审核必看的About/Contact链接 -->
+      <div class="nav">
         <a href="#">Home</a>
         <a href="#about">About</a>
-        <a href="#">Categories</a>
-      </div> -->
+        <a href="#contact">Contact</a>
+        <a href="#privacy">Privacy Policy</a>
+      </div>
 
       <div class="search">
         <button id="themeToggle" class="theme-btn">🌙</button>
@@ -221,16 +264,11 @@
     </div>
   </header>
 
-  <div style="
-    max-width:1200px;
-    margin:20px auto 0;
-    padding:10px 20px;
-    font-size:13px;
-    color:#666;
-    text-align:center;
-  ">
-    Latest update: March 2026 · New curated music videos added from online communities
+  <!-- 联盟合规必备：Affiliate Disclosure 声明 -->
+  <div class="disclosure">
+    ✨ Affiliate Disclosure: This site may contain affiliate links, Latest update: March 2026 · New curated music videos added from online communities
   </div>
+
 
   <div class="container">
     <div class="grid" id="videoGrid"></div>
@@ -242,31 +280,67 @@
     margin:60px auto;
     padding:20px;
     color: #666;
-    /* background:#fff; */
     border-radius:12px;
-    /* box-shadow:0 4px 12px rgba(0,0,0,0.05); */
     font-size:14px;
     line-height:1.6;
   ">
     <h2>About DailyClipHub</h2>
 
     <p>
-      DailyClipHub is a personal content curation project that collects and organizes trending music videos
-      discovered across online communities and social platforms.
+      DailyClipHub is a personal content curation project founded in 2026, dedicated to collecting and organizing
+      high-quality trending music videos from trusted online communities and social platforms.
     </p>
-
     <p>
       Users access videos voluntarily after discovering them through these curated pages. All videos are
       publicly available content collected for personal curation and enjoyment.
     </p>
-
     <p>
       Content is updated regularly to reflect trending music and viewer interests.
     </p>
   </section>
 
+  <!-- ===== Contact Section ===== -->
+  <section id="contact" style="
+    max-width:1200px;
+    margin:60px auto;
+    padding:20px;
+    color: #666;
+    border-radius:12px;
+    font-size:14px;
+    line-height:1.6;
+  ">
+    <h2>Contact Us</h2>
+    <p>Have questions, suggestions, or feedback about our curated content? Feel free to reach out!</p>
+    <p>📧 Email: myDoodNo1@outlook.com</p>
+    <p>🕒 Response Time: We typically reply within 2-3 business days.</p>
+  </section>
+
+  <!-- ===== Privacy Policy Section ===== -->
+  <section id="privacy" style="
+    max-width:1200px;
+    margin:60px auto;
+    padding:20px;
+    color: #666;
+    border-radius:12px;
+    font-size:14px;
+    line-height:1.6;
+  ">
+    <h2>Privacy Policy</h2>
+    <p>At DailyClipHub, we respect your privacy and are committed to protecting your personal information.</p>
+    <p>🔒 We do not collect, store, or share any personal data from our visitors.</p>
+    <p>🌐 Our site may use third-party links (affiliate links) that have their own privacy policies.</p>
+    <p>📱 We do not track user behavior or use cookies for personalization.</p>
+  </section>
+
   <footer>
-    © 2026 DailyClipHub · Discover trending music & videos · All content curated from public sources
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#privacy">Privacy Policy</a>
+    </div>
+    <p>© 2026 DailyClipHub · All Rights Reserved · Content curated from public sources</p>
+    <p>Made with ❤️ for music lovers worldwide</p>
   </footer>
 
   <script>

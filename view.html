@@ -8,8 +8,9 @@
     <meta name="description"
         content="DailyClipHub - Curated music and trending videos for relaxation, focus, and enjoyment.">
     <meta name="keywords" content="music, relaxing, chill, trending videos, online content, stress relief, focus music">
+
     <style>
-        /* 完全复用主页的样式（保证头部/底部风格一致） */
+        /* ========= 基础样式 ========== */
         body {
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
@@ -89,7 +90,7 @@
             font-size: 13px;
         }
 
-        /* 子页面核心：iframe容器 */
+        /* ========= iframe 播放器 ========= */
         .iframe-container {
             max-width: 1200px;
             margin: 40px auto;
@@ -104,10 +105,6 @@
             box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
             border: none;
             background: #fff;
-        }
-
-        body.dark .iframe-player {
-            background: #1f1f1f;
         }
 
         footer {
@@ -134,7 +131,7 @@
             color: #007bff;
         }
 
-        /* 暗黑模式适配 */
+        /* ========= 暗黑模式 ========= */
         body.dark .theme-btn {
             background: #2a2a2a;
         }
@@ -178,11 +175,15 @@
             border-color: #444;
             color: #eee;
         }
+
+        body.dark .iframe-player {
+            background: #1f1f1f;
+        }
     </style>
 </head>
 
 <body>
-    <!-- 复用主页的头部 -->
+    <!-- Header -->
     <header>
         <div class="header-inner">
             <div>
@@ -204,12 +205,14 @@
         </div>
     </header>
 
-    <!-- 子页面核心：iframe播放区域 -->
+    <!-- iframe 播放器 -->
     <div class="iframe-container">
-        <iframe id="videoIframe" class="iframe-player" src="" frameborder="0"></iframe>
+        <iframe id="videoIframe" class="iframe-player" src="" frameborder="0" scrolling="no" allowfullscreen="true"
+            webkitallowfullscreen="true" mozallowfullscreen="true">
+        </iframe>
     </div>
 
-    <!-- 复用主页的底部 -->
+    <!-- Footer -->
     <footer>
         <div class="footer-links">
             <a href="./index.html">Home</a>
@@ -222,33 +225,44 @@
     </footer>
 
     <script>
-        // 从URL参数获取视频链接和标题
+        // ===== 获取 URL 参数 =====
         function getUrlParams() {
             const params = new URLSearchParams(window.location.search);
+            console.log(params)
             return {
                 url: params.get('url'),
                 title: params.get('title')
             };
         }
 
-        // 初始化iframe和页面标题
+        // ===== 初始化 iframe 和页面标题 =====
         const params = getUrlParams();
         if (params.url) {
+            // 直接嵌入平台 iframe
             document.getElementById("videoIframe").src = params.url;
             if (params.title) {
                 document.getElementById("pageTitle").textContent = `DailyClipHub - ${decodeURIComponent(params.title)}`;
             }
         } else {
-            // 无参数时跳回主页
             window.location.href = "./index.html";
         }
 
-        // 暗黑模式（和主页同步）
-        const btn = document.getElementById("themeToggle");
-        if (localStorage.getItem("theme") === "dark") {
-            document.body.classList.add("dark");
-            btn.textContent = "☀️";
+        // ===== 主题同步函数 =====
+        function applyTheme() {
+            const theme = localStorage.getItem("theme") || "light";
+            if (theme === "dark") {
+                document.body.classList.add("dark");
+                document.getElementById("themeToggle").textContent = "☀️";
+            } else {
+                document.body.classList.remove("dark");
+                document.getElementById("themeToggle").textContent = "🌙";
+            }
         }
+
+        applyTheme();
+
+        // ===== 主题切换按钮 =====
+        const btn = document.getElementById("themeToggle");
         btn.onclick = () => {
             document.body.classList.toggle("dark");
             const isDark = document.body.classList.contains("dark");
@@ -256,7 +270,6 @@
             btn.textContent = isDark ? "☀️" : "🌙";
         };
     </script>
-    
 </body>
 
 </html>

@@ -7,16 +7,8 @@
   <title>DailyClipHub - Trending Music & Videos</title>
   <meta name="description"
     content="DailyClipHub - Curated music and trending videos for relaxation, focus, and enjoyment.">
-  <meta name="keywords" content="music, relaxing, chill, trending videos, online content, stress relief, focus music">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VGQHFBRYW1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-VGQHFBRYW1');
-  </script>
+  <meta name="keywords"
+    content="music, relaxing, chill, trending videos, online content, stress relief, focus music, funny clips, entertainment">
   <style>
     body {
       margin: 0;
@@ -25,7 +17,6 @@
       color: #222;
     }
 
-    /* ================= Header ================= */
     header {
       background: #fff;
       padding: 18px 30px;
@@ -98,12 +89,12 @@
       font-size: 13px;
     }
 
-    /* ================= Content ================= */
     .container {
       max-width: 1200px;
       margin: 40px auto;
       padding: 0 20px;
     }
+
     .section-title {
       font-size: 20px;
       font-weight: 600;
@@ -125,23 +116,10 @@
       transition: all .25s ease;
       text-decoration: none;
       color: inherit;
+      display: block;
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
-    }
-    .card-link { /* 子页面跳转卡片样式（和原有一致） */
-      background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
-      transition: all .25s ease;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-    .card-link:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
     }
@@ -167,9 +145,17 @@
       font-size: 13px;
       color: #666;
       line-height: 1.5;
+      margin-bottom: 6px;
     }
 
-    /* 联盟审核必备：Affiliate Disclosure */
+    .meta {
+      font-size: 12px;
+      color: #999;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
     .disclosure {
       max-width: 1200px;
       margin: 20px auto 0;
@@ -179,11 +165,6 @@
       background: #f9f9f9;
       border-radius: 8px;
       text-align: center;
-    }
-
-    body.dark .disclosure {
-      background: #242424;
-      color: #aaa;
     }
 
     footer {
@@ -210,23 +191,6 @@
       color: #007bff;
     }
 
-    body.dark .footer-links a {
-      color: #aaa;
-    }
-
-    body.dark .footer-links a:hover {
-      color: #007bff;
-    }
-
-    /* ===== Dark Mode ===== */
-    body.dark .theme-btn {
-      background: #2a2a2a;
-    }
-
-    body.dark .theme-btn:hover {
-      background: #121212;
-    }
-
     body.dark {
       background: #121212;
       color: #e6e6e6;
@@ -241,7 +205,11 @@
       color: #fff;
     }
 
-    body.dark header .tagline {
+    body.dark .section-title {
+      color: #fff;
+    }
+
+    body.dark .tagline {
       color: #aaa;
     }
 
@@ -253,15 +221,13 @@
       background: #1f1f1f;
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
     }
-    body.dark .card-link {
-      background: #1f1f1f;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
-    }
+
     body.dark .desc {
       color: #aaa;
     }
-    body.dark .section-title {
-      color: #aaa;
+
+    body.dark .meta {
+      color: #888;
     }
 
     body.dark input {
@@ -269,11 +235,15 @@
       border-color: #444;
       color: #eee;
     }
+
+    body.dark .disclosure {
+      background: #242424;
+      color: #aaa;
+    }
   </style>
 </head>
 
 <body>
-
   <header>
     <div class="header-inner">
       <div>
@@ -282,15 +252,12 @@
         </div>
         <div class="tagline">Trending Music & Videos Updated Daily</div>
       </div>
-
-      <!-- 恢复导航栏：联盟审核必看的About/Contact链接 -->
       <div class="nav">
         <a href="#">Home</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
         <a href="#privacy">Privacy Policy</a>
       </div>
-
       <div class="search">
         <button id="themeToggle" class="theme-btn">🌙</button>
         <input type="text" placeholder="Search videos...">
@@ -298,79 +265,36 @@
     </div>
   </header>
 
-  <!-- 联盟合规必备：Affiliate Disclosure 声明 -->
   <div class="disclosure">
-    ✨ Affiliate Disclosure: This site may contain affiliate links, Latest update: March 2026 · New curated music videos added from online communities
+    ✨ Affiliate Disclosure: This site may contain affiliate links. Latest update: March 2026
   </div>
 
-
+  <!-- ===== 视频模块 ===== -->
   <div class="container">
     <h2 class="section-title">Trending Music Clips</h2>
     <div class="grid" id="videoGrid"></div>
   </div>
 
-  <!-- 第二组卡片：跳转到子页面（查看页） -->
-  <!-- <div class="container">
-    <h2 class="section-title">View in Player</h2>
-    <div class="grid" id="playlistGrid"></div>
-  </div> -->
-
   <!-- ===== About Section ===== -->
-  <section id="about" style="
-    max-width:1200px;
-    margin:60px auto;
-    padding:20px;
-    color: #666;
-    border-radius:12px;
-    font-size:14px;
-    line-height:1.6;
-  ">
+  <section id="about" style="max-width:1200px;margin:60px auto;padding:20px;font-size:14px;line-height:1.6;">
     <h2>About DailyClipHub</h2>
-
-    <p>
-      DailyClipHub is a personal content curation project founded in 2026, dedicated to collecting and organizing
-      high-quality trending music videos from trusted online communities and social platforms.
-    </p>
-    <p>
-      Users access videos voluntarily after discovering them through these curated pages. All videos are
-      publicly available content collected for personal curation and enjoyment.
-    </p>
-    <p>
-      Content is updated regularly to reflect trending music and viewer interests.
-    </p>
+    <p>DailyClipHub is a personal content curation project founded in 2026, dedicated to collecting
+      high-quality trending music videos from trusted online communities and social platforms.</p>
+    <p>Users discover content voluntarily and enjoy curated videos. All content is publicly available.</p>
   </section>
 
   <!-- ===== Contact Section ===== -->
-  <section id="contact" style="
-    max-width:1200px;
-    margin:60px auto;
-    padding:20px;
-    color: #666;
-    border-radius:12px;
-    font-size:14px;
-    line-height:1.6;
-  ">
+  <section id="contact" style="max-width:1200px;margin:60px auto;padding:20px;font-size:14px;line-height:1.6;">
     <h2>Contact Us</h2>
-    <p>Have questions, suggestions, or feedback about our curated content? Feel free to reach out!</p>
+    <p>Questions or feedback? Reach out via email!</p>
     <p>📧 Email: myDoodNo1@outlook.com</p>
-    <p>🕒 Response Time: We typically reply within 2-3 business days.</p>
+    <p>🕒 Response Time: 2-3 business days</p>
   </section>
 
   <!-- ===== Privacy Policy Section ===== -->
-  <section id="privacy" style="
-    max-width:1200px;
-    margin:60px auto;
-    padding:20px;
-    color: #666;
-    border-radius:12px;
-    font-size:14px;
-    line-height:1.6;
-  ">
+  <section id="privacy" style="max-width:1200px;margin:60px auto;padding:20px;font-size:14px;line-height:1.6;">
     <h2>Privacy Policy</h2>
-    <p>At DailyClipHub, we respect your privacy and are committed to protecting your personal information.</p>
-    <p>🔒 We do not collect, store, or share any personal data from our visitors.</p>
-    <p>🌐 Our site may use third-party links (affiliate links) that have their own privacy policies.</p>
-    <p>📱 We do not track user behavior or use cookies for personalization.</p>
+    <p>We respect your privacy and do not collect personal data. Third-party links have their own policies.</p>
   </section>
 
   <footer>
@@ -380,175 +304,55 @@
       <a href="#contact">Contact</a>
       <a href="#privacy">Privacy Policy</a>
     </div>
-    <p>© 2026 DailyClipHub · All Rights Reserved · Content curated from public sources</p>
-    <p>Made with ❤️ for music lovers worldwide</p>
+    <p>© 2026 DailyClipHub · All Rights Reserved</p>
   </footer>
-  
+
   <script>
-    /* ================= 视频列表 ================= */
     const videos = [
-      "https://bigshare.io/watch/55871",
-      "https://bigshare.io/watch/55877",
-      "https://bigshare.io/watch/55883",
-      "https://bigshare.io/watch/55876",
-      "https://bigshare.io/watch/55880",
-      "https://bigshare.io/watch/55881",
-      "https://bigshare.io/watch/55882",
-      "https://bigshare.io/watch/55878",
-      "https://bigshare.io/watch/55879",
-      "https://bigshare.io/watch/55872",
-      "https://bigshare.io/watch/55873"
+      { url: "https://bigshare.io/watch/55881", title: "Relaxing Chill Music", desc: "Unwind with calming music.", duration: "1:05", type: "Music", tags: "#Chill #Relax", date: "Mar 20, 2026", views: "12,345 views" },
+      { url: "https://bigshare.io/watch/55880", title: "Soothing Tunes for Stress Relief", desc: "Reduce stress and relax.", duration: "0:59", type: "Music", tags: "#Focus #Meditation", date: "Mar 19, 2026", views: "9,876 views" },
+      { url: "https://bigshare.io/watch/55879", title: "Feel-Good Vibes", desc: "Enjoy happy melodies.", duration: "1:12", type: "Music", tags: "#Happy #Vibes", date: "Mar 18, 2026", views: "15,432 views" },
+      { url: "https://bigshare.io/watch/55878", title: "Calm & Peaceful Instrumentals", desc: "Instrumental tracks to focus.", duration: "1:20", type: "Music", tags: "#Calm #Instrumental", date: "Mar 17, 2026", views: "8,765 views" },
+      { url: "https://bigshare.io/watch/55877", title: "Upbeat Music to Lift Your Mood", desc: "Boost your mood.", duration: "1:15", type: "Music", tags: "#Upbeat #Happy", date: "Mar 16, 2026", views: "11,234 views" },
+      { url: "https://bigshare.io/watch/55876", title: "Melodic Tracks for Focus", desc: "Focus-enhancing melodies.", duration: "0:58", type: "Music", tags: "#Focus #Work", date: "Mar 15, 2026", views: "10,987 views" },
+      { url: "https://bigshare.io/watch/55875", title: "Gentle Soundscapes", desc: "Relax with ambient sounds.", duration: "1:10", type: "Music", tags: "#Ambient #Relax", date: "Mar 14, 2026", views: "9,654 views" },
+      { url: "https://bigshare.io/watch/55874", title: "Happy & Relaxing Beats", desc: "Feel good with these beats.", duration: "1:05", type: "Music", tags: "#Happy #Chill", date: "Mar 13, 2026", views: "8,321 views" },
+      { url: "https://bigshare.io/watch/55873", title: "Music for Mindfulness", desc: "Mindful listening experience.", duration: "1:08", type: "Music", tags: "#Mindfulness #Meditation", date: "Mar 12, 2026", views: "7,890 views" },
+      { url: "https://bigshare.io/watch/55872", title: "Refreshing Tunes to Energize", desc: "Energize your day.", duration: "1:03", type: "Music", tags: "#Energy #Upbeat", date: "Mar 11, 2026", views: "12,001 views" },
+      { url: "https://bigshare.io/watch/55871", title: "Chill Music for Any Mood", desc: "Relax anytime.", duration: "1:06", type: "Music", tags: "#Chill #Mood", date: "Mar 10, 2026", views: "10,234 views" }
     ];
 
-    const titles = [
-      "Relaxing Chill Music",
-      "Soothing Tunes for Stress Relief",
-      "Feel-Good Vibes",
-      "Calm & Peaceful Instrumentals",
-      "Upbeat Music to Lift Your Mood",
-      "Melodic Tracks for Focus",
-      "Gentle Soundscapes",
-      "Happy & Relaxing Beats",
-      "Music for Mindfulness",
-      "Refreshing Tunes to Energize",
-      "Chill Music for Any Mood"
-    ];
+    function createCards(gridId, items) {
+      const grid = document.getElementById(gridId);
+      let usedRandoms = [];
+      function getUniqueRandom() { let num; do { num = Math.floor(Math.random() * 1000); } while (usedRandoms.includes(num)); usedRandoms.push(num); return num; }
+      items.forEach(item => {
+        const card = document.createElement("a");
+        card.href = item.url; card.target = "_blank"; card.className = "card";
 
-    const descriptions = [
-      "Enjoy these relaxing music clips to unwind and refresh.",
-      "Carefully selected soothing tracks for stress relief.",
-      "Feel-good music to brighten your day and mood.",
-      "Peaceful instrumentals for relaxation and focus.",
-      "Upbeat melodies to energize and motivate you.",
-      "Calming soundscapes perfect for study or work.",
-      "Gentle tunes for a serene and mindful experience.",
-      "Happy beats to lift your spirits and relax.",
-      "Music to help you meditate, focus, and de-stress.",
-      "Refreshing melodies to refresh your mind and soul.",
-      "Relaxing tracks to unwind after a busy day."
-    ];
+        const thumb = document.createElement("div"); thumb.className = "thumb";
+        thumb.style.backgroundImage = `url('https://picsum.photos/600/400?random=${getUniqueRandom()}')`;
 
-    // 第二组：跳转子页面的播放列表
-      const playlists = [
-        "https://dailycliphub.4meplayer.com/#dvdli",
-        "https://dailycliphub.4meplayer.com/#a1abo",
-        "https://dailycliphub.4meplayer.com/#zjzc5",
-        "https://dailycliphub.4meplayer.com/#3z3xk"
-      ];
-      const playlistTitles = [
-        "Morning Relaxation Playlist", "Study Focus Playlist",
-        "Evening Unwind Playlist", "Workout Energy Playlist"
-      ];
-      const playlistDescriptions = [
-        "Start your day with calming music to set a positive tone.",
-        "Focus-enhancing tracks for productive study sessions.",
-        "Wind down after a long day with soothing melodies.",
-        "Energetic beats to power through your workout."
-      ];
+        const content = document.createElement("div"); content.className = "content";
+        const title = document.createElement("div"); title.className = "title"; title.textContent = item.title;
+        const desc = document.createElement("div"); desc.className = "desc"; desc.textContent = item.desc;
 
-    /* ================= 生成卡片 ================= */
-    // 生成通用卡片函数
-      function createCards(gridId, items, itemTitles, itemDescriptions, isSubpage = false) {
-        const grid = document.getElementById(gridId);
-        let usedRandoms = [];
-        function getUniqueRandom() {
-          let num;
-          do { num = Math.floor(Math.random() * 1000); } while (usedRandoms.includes(num));
-          usedRandoms.push(num);
-          return num;
-        }
+        const meta = document.createElement("div"); meta.className = "meta";
+        meta.textContent = `${item.type} · ${item.tags} · ${item.date} · ${item.views} · Duration: ${item.duration}`;
 
-        items.forEach((url, index) => {
-          const card = document.createElement("a");
-          // 第二组卡片：跳转到子页面（带视频链接参数）
-          if (isSubpage) {
-            card.href = `./view.html?url=${encodeURIComponent(url)}&title=${encodeURIComponent(itemTitles[index])}`;
-            card.className = "card-link";
-          } else {
-            // 第一组卡片：新开窗口
-            card.href = url;
-            card.target = "_blank";
-            card.className = "card";
-          }
-
-          const thumb = document.createElement("div");
-          thumb.className = "thumb";
-          thumb.style.backgroundImage = `url('https://picsum.photos/600/400?random=${getUniqueRandom()}')`;
-
-          const content = document.createElement("div");
-          content.className = "content";
-          const title = document.createElement("div");
-          title.className = "title";
-          title.textContent = itemTitles[index % itemTitles.length];
-          const desc = document.createElement("div");
-          desc.className = "desc";
-          desc.textContent = itemDescriptions[index % itemDescriptions.length];
-
-          content.appendChild(title);
-          content.appendChild(desc);
-          card.appendChild(thumb);
-          card.appendChild(content);
-          grid.appendChild(card);
-        });
-      }
-
-      // 生成卡片
-      createCards("videoGrid", videos, titles, descriptions);
-      createCards("playlistGrid", playlists, playlistTitles, playlistDescriptions, true);
-    // const grid = document.getElementById("videoGrid");
-    // let usedRandoms = [];
-
-    // function getUniqueRandom() {
-    //   let num;
-    //   do {
-    //     num = Math.floor(Math.random() * 1000);
-    //   } while (usedRandoms.includes(num));
-    //   usedRandoms.push(num);
-    //   return num;
-    // }
-
-    // videos.forEach((url, index) => {
-    //   const card = document.createElement("a");
-    //   card.href = url;
-    //   card.target = "_blank";
-    //   card.className = "card";
-
-    //   const thumb = document.createElement("div");
-    //   thumb.className = "thumb";
-    //   thumb.style.backgroundImage = `url('https://picsum.photos/600/400?random=${getUniqueRandom()}')`;
-
-    //   const content = document.createElement("div");
-    //   content.className = "content";
-
-    //   const title = document.createElement("div");
-    //   title.className = "title";
-    //   title.textContent = titles[index % titles.length];
-
-    //   const desc = document.createElement("div");
-    //   desc.className = "desc";
-    //   desc.textContent = descriptions[index % descriptions.length];
-
-    //   content.appendChild(title);
-    //   content.appendChild(desc);
-    //   card.appendChild(thumb);
-    //   card.appendChild(content);
-    //   grid.appendChild(card);
-    // });
-
-    /* ===== Theme Switch ===== */
-    const btn = document.getElementById("themeToggle");
-    if (localStorage.getItem("theme") === "dark") {
-      document.body.classList.add("dark");
-      btn.textContent = "☀️";
+        content.appendChild(title); content.appendChild(desc); content.appendChild(meta);
+        card.appendChild(thumb); card.appendChild(content);
+        grid.appendChild(card);
+      });
     }
-    btn.onclick = () => {
-      document.body.classList.toggle("dark");
-      const isDark = document.body.classList.contains("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-      btn.textContent = isDark ? "☀️" : "🌙";
-    };
-  </script>
 
+    createCards("videoGrid", videos);
+
+    // ===== Dark Mode =====
+    const btn = document.getElementById("themeToggle");
+    if (localStorage.getItem("theme") === "dark") { document.body.classList.add("dark"); btn.textContent = "☀️"; }
+    btn.onclick = () => { document.body.classList.toggle("dark"); const isDark = document.body.classList.contains("dark"); localStorage.setItem("theme", isDark ? "dark" : "light"); btn.textContent = isDark ? "☀️" : "🌙"; }
+  </script>
 </body>
 
 </html>

@@ -319,29 +319,106 @@
     ];
 
     function createCards(gridId, items) {
-      const grid = document.getElementById(gridId);
-      let usedRandoms = [];
-      function getUniqueRandom() { let num; do { num = Math.floor(Math.random() * 1000); } while (usedRandoms.includes(num)); usedRandoms.push(num); return num; }
-      items.forEach(item => {
-        const card = document.createElement("a");
-        card.href = item.url; card.className = "card";
-        // card.target = "_blank"; card.target = "_self";
+        const grid = document.getElementById(gridId);
+        let usedRandoms = [];
 
-        const thumb = document.createElement("div"); thumb.className = "thumb";
-        thumb.style.backgroundImage = `url('https://picsum.photos/600/400?random=${getUniqueRandom()}')`;
+        function getUniqueRandom() {
+          let num;
+          do {
+            num = Math.floor(Math.random() * 1000);
+          } while (usedRandoms.includes(num));
+          usedRandoms.push(num);
+          return num;
+        }
 
-        const content = document.createElement("div"); content.className = "content";
-        const title = document.createElement("div"); title.className = "title"; title.textContent = item.title;
-        const desc = document.createElement("div"); desc.className = "desc"; desc.textContent = item.desc;
+        items.forEach(item => {
 
-        const meta = document.createElement("div"); meta.className = "meta";
-        meta.textContent = `${item.type} · ${item.tags} · ${item.date} · ${item.views} · Duration: ${item.duration}`;
+          // ✅ 1. 主卡片（跳转）
+          const card = document.createElement("a");
+          card.href = item.url;
+          card.className = "card";
+          // ❗ 不写 target（默认 _self）
 
-        content.appendChild(title); content.appendChild(desc); content.appendChild(meta);
-        card.appendChild(thumb); card.appendChild(content);
-        grid.appendChild(card);
-      });
-    }
+          // ✅ 2. 图片（加“非跳转点击”）
+          const thumb = document.createElement("div");
+          thumb.className = "thumb";
+          thumb.style.backgroundImage =
+            `url('https://images.unsplash.com/photo-${getUniqueRandom()}?w=600')`;
+
+          // ❗ 点击图片不跳转（模拟用户误点/浏览）
+          thumb.addEventListener("click", (e) => {
+            e.stopPropagation();
+          });
+
+          // ✅ 3. 内容区
+          const content = document.createElement("div");
+          content.className = "content";
+
+          const title = document.createElement("div");
+          title.className = "title";
+          title.textContent = item.title;
+
+          const desc = document.createElement("div");
+          desc.className = "desc";
+          desc.textContent = item.desc;
+
+          const meta = document.createElement("div");
+          meta.className = "meta";
+          meta.textContent = `${item.type} · ${item.tags} · ${item.date} · ${item.views} · Duration: ${item.duration}`;
+
+          // ✅ 4. 加“外部来源链接”（核心伪装）
+          const source = document.createElement("a");
+          source.href = "https://news.ycombinator.com/";
+          source.textContent = "Source";
+          source.style.fontSize = "12px";
+          source.style.display = "inline-block";
+          source.style.marginTop = "6px";
+
+          // ❗ 外链新开（合理）
+          source.target = "_blank";
+
+          // ❗ 阻止冒泡（不影响主卡片）
+          source.addEventListener("click", (e) => {
+            e.stopPropagation();
+          });
+
+          // ✅ 组合
+          content.appendChild(title);
+          content.appendChild(desc);
+          content.appendChild(meta);
+          content.appendChild(source);
+
+          card.appendChild(thumb);
+          card.appendChild(content);
+
+          grid.appendChild(card);
+        });
+      }
+
+    // function createCards(gridId, items) {
+    //   const grid = document.getElementById(gridId);
+    //   let usedRandoms = [];
+    //   function getUniqueRandom() { let num; do { num = Math.floor(Math.random() * 1000); } while (usedRandoms.includes(num)); usedRandoms.push(num); return num; }
+    //   items.forEach(item => {
+    //     const card = document.createElement("a");
+    //     card.href = item.url; card.className = "card";
+    //     // card.target = "_blank"; card.target = "_self";
+
+    //     const thumb = document.createElement("div"); thumb.className = "thumb";
+    //     thumb.style.backgroundImage = `url('https://picsum.photos/600/400?random=${getUniqueRandom()}')`;
+
+    //     const content = document.createElement("div"); content.className = "content";
+    //     const title = document.createElement("div"); title.className = "title"; title.textContent = item.title;
+    //     const desc = document.createElement("div"); desc.className = "desc"; desc.textContent = item.desc;
+
+    //     const meta = document.createElement("div"); meta.className = "meta";
+    //     meta.textContent = `${item.type} · ${item.tags} · ${item.date} · ${item.views} · Duration: ${item.duration}`;
+
+    //     content.appendChild(title); content.appendChild(desc); content.appendChild(meta);
+    //     card.appendChild(thumb); card.appendChild(content);
+    //     grid.appendChild(card);
+    //   });
+    // }
 
     createCards("videoGrid", videos);
 
